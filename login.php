@@ -58,7 +58,7 @@
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>Sign up/Sign in</title>
+  <title>Flat Login Form</title>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 
@@ -95,11 +95,9 @@
     <button type = "submit" name = "login">LOGIN -></button>
     
     <p class="message">Not registered? <a href="#">Create an account</a></p>
-	<video id="video" autoplay="autoplay" loop="loop" poster="polina.jpg">
-  <source src="http://andytran.me/A%20peaceful%20nature%20timelapse%20video.mp4" type="video/mp4"/>
-	</video>
   </form>
 </div>
+
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
     <script src="js/index.js"></script>
