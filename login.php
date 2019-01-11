@@ -1,64 +1,37 @@
 <?php
      session_start();
     require 'database.php';
-
-   
-     if (isset($_POST['reg']))
-    {       
-            echo $_POST['user'];
-          $user = $_POST['user'];//username
-          $pwd = $_POST['pwd'];//password
-          $email = $_POST['email'];//E-mail Id
-          
-          $sql = "SELECT * FROM login_info WHERE username ='$user'";
-          $result = mysqli_query($conn,$sql);
-
-
-          if(!$row = mysqli_fetch_assoc($result))
-          {
-
-             $sql = "INSERT INTO login_info (username,pwd,email_id)
-              VALUES('$user','$pwd','$email')";
-              $result = mysqli_query($conn,$sql);
-              if($result)
-              {
-                header("Location: success1.php");
-                //echo("REGISTRATION SUCCESSFULL");
-              }
-              else
-              {
-                echo "Error:".$sql."<br>".mysqli_error($conn);
-              }
-              #mysqli_close($conn);
-          }
-          else {
-            echo "<h6>Error: </h6>".$user."<span> Is already Registered</span>";
-          }
-    }
     if (isset($_POST['login']))
     {       
 
             $user = $_POST['user'];//username
             $pwd = $_POST['pwd'];//password
+			if($_POST['user']!=null && $_POST['pwd']!=null)
+			{
 
-            $sql = "SELECT * FROM login_info WHERE username='$user' AND pwd='$pwd'";
-            $result = mysqli_query($conn,$sql);
-            if(!$row = mysqli_fetch_assoc($result))
-            {
-              echo "Your Username or password is incorrect !";
-            }
-            else {
-              echo "You are logged in";
-              $_SESSION['username'] = $row['username'];
-            }
-            header ("Location: HomePage2.php");
-          }
+				$sql = "SELECT * FROM login_info WHERE username='$user' AND pwd='$pwd'";
+				$result = mysqli_query($conn,$sql);
+				if(!$row = mysqli_fetch_assoc($result))
+				{
+				  echo "Your Username or password is incorrect !";
+				}
+				else {
+				  echo "You are logged in";
+				  $_SESSION['username'] = $row['username'];
+				}
+				header ("Location: HomePage2.php");
+			}
+			else{
+				echo "Enter complete details";
+				
+			}
+	}
 ?>
 <!DOCTYPE html>
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>Flat Login Form</title>
+  <title>Log in</title>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 
@@ -77,24 +50,19 @@
   <div class="info">
     <h1 style = "text-decoration: underline; font-weight: bold;">Welcome to </h1>
     <h1 style = "text-decoration: underline; font-weight: bold; color: #b30000; ">"Blog-A-Thon"</h1>
-    <h2 style = "font-size: 15px; "> Kindly Login OR Sign Up if new! </h2>
+	<h1 style = "text-decoration: underline; font-weight: bold;">Login </h1>
+   
   </div>
 </div>
 <div class="form" >
   <div class="thumbnail"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/hat.svg"/></div>
-  <form class="register-form"   action = "" method = "POST">
-    <input type="text" name = "user" placeholder="Name"/>
-    <input type="password" name = "pwd" placeholder="Password"/>
-    <input type="text" name = "email" placeholder="E-mail Address" vlaue=""/>
-    <button type = "submit" name = "reg">CREATE -> </button>
-    <p class="message">Already registered? <a href="#">Sign In</a></p>
-  </form>
+  
   <form class="login-form" action = "" method = "POST">
     <input type="text" name="user" placeholder="Username"/>
     <input type="password" name = "pwd" placeholder="Password"/>
     <button type = "submit" name = "login">LOGIN -></button>
     
-    <p class="message">Not registered? <a href="#">Create an account</a></p>
+    <p class="message">Not registered? <a href="signup.php">Create an account</a></p>
   </form>
 </div>
 
