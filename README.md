@@ -11,3 +11,5 @@ you can visit the blogger at https://blog-a-thon.azurewebsites.net/web_app/
  How to go about:
 Create an account->login->ca post->can view post,etc
 
+Demo Video:https://www.youtube.com/watch?v=kb55ByGicVM
+
